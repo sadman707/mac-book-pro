@@ -1,5 +1,3 @@
-// declaring global variable
-
 //memory button 1
 document.getElementById('memory-button-1').addEventListener('click', function () {
     const bestPriceInput = document.getElementById('best-price');
@@ -8,6 +6,9 @@ document.getElementById('memory-button-1').addEventListener('click', function ()
     bestPriceInput.innerText = bestPriceAmount;
     const extraMemoryCost = document.getElementById('extra-memory-cost');
     extraMemoryCost.innerText = 0;
+    let totalPrice = parseFloat(document.getElementById('total-price').innerText);
+    let subtractedPrice = totalPrice - 180;
+    document.getElementById('total-price').innerText = subtractedPrice;
 
     // console.log(bestPriceAmount);
 });
@@ -19,49 +20,62 @@ document.getElementById('memory-button-2').addEventListener('click', function ()
     if (extraMemoryCostText < 180) {
         const extraMemoryAmount = parseFloat(extraMemoryCostText) + 180;
         extraMemoryCost.innerText = extraMemoryAmount;
-        let totalPrice = 0;
-        let price1 = 1299 + parseFloat(document.getElementById('extra-memory-cost').innerText);
-        totalPrice = totalPrice + price1;
+        let price1 = 1299 + parseFloat(document.getElementById('extra-memory-cost').innerText) + parseFloat(document.getElementById('extra-storage-cost').innerText) + parseFloat(document.getElementById('extra-delivery-charge').innerText);
 
-        console.log('price1', price1);
+        document.getElementById('total-price').innerText = price1;
+
+        // console.log('price1', price1);
     }
-
-
-
 });
 // console.log('second button price', totalPrice);
 // storage 1
 document.getElementById('storage-button-1').addEventListener('click', function () {
-    const normalMemory = document.getElementById('extra-storage-cost');
-    const normalMemoryText = normalMemory.innerText;
-    const normalMemoryAmount = parseFloat(normalMemoryText);
-    normalMemory.innerText = 0;
+    const normalStorage = document.getElementById('extra-storage-cost');
+    const normalStoryText = normalStorage.innerText;
+    const normalStorageAmount = parseFloat(normalStoryText);
+    const extraStorageCost = parseFloat(document.getElementById('extra-storage-cost').innerText);
+    if (extraStorageCost == 100) {
+        let totalPrice = parseFloat(document.getElementById('total-price').innerText);
+        let subtractedPrice = totalPrice - 100;
+        document.getElementById('total-price').innerText = subtractedPrice;
+    }
+    else {
+        let totalPrice = parseFloat(document.getElementById('total-price').innerText);
+        let subtractedPrice = totalPrice - 180;
+        document.getElementById('total-price').innerText = subtractedPrice;
+    }
+    normalStorage.innerText = 0;
+
+    console.log('extra cost', extraStorageCost);
+
 
     // console.log(normalMemoryAmount);
 });
 // storage 2
 document.getElementById('storage-button-2').addEventListener('click', function () {
-    const normalMemory = document.getElementById('extra-storage-cost');
-    const normalMemoryText = normalMemory.innerText;
-    if (normalMemoryText < 100) {
-        const normalMemoryAmount = parseFloat(normalMemoryText) + 100;
-        normalMemory.innerText = normalMemoryAmount;
+    const normalStorage = document.getElementById('extra-storage-cost');
+    const normalStorageText = normalStorage.innerText;
+    if (normalStorageText < 100) {
+        const normalStorageAmount = parseFloat(normalStorageText) + 100;
+        normalStorage.innerText = normalStorageAmount;
+        let price1 = 1299 + parseFloat(document.getElementById('extra-memory-cost').innerText) + parseFloat(document.getElementById('extra-storage-cost').innerText) + parseFloat(document.getElementById('extra-delivery-charge').innerText);
 
-        //add
-        let price2 = 1299 + parseFloat(document.getElementById('extra-storage-cost').innerText);
+        document.getElementById('total-price').innerText = price1;
     }
     // console.log(normalMemoryAmount);
 });
 // storage 3
 document.getElementById('storage-button-3').addEventListener('click', function () {
-    const normalMemory = document.getElementById('extra-storage-cost');
-    const normalMemoryText = normalMemory.innerText;
-    if (normalMemoryText < 180) {
-        const normalMemoryAmount = parseFloat(normalMemoryText) + 180;
-        normalMemory.innerText = normalMemoryAmount;
+    const normalStorage = document.getElementById('extra-storage-cost');
+    const normalStorageText = normalStorage.innerText;
+    if (normalStorageText < 180) {
+        const normalStorageAmount = parseFloat(normalStorageText) + 180;
+        normalStorage.innerText = normalStorageAmount;
 
         //add
-        let price3 = 1299 + normalMemoryText;
+        let price1 = 1299 + parseFloat(document.getElementById('extra-memory-cost').innerText) + parseFloat(document.getElementById('extra-storage-cost').innerText) + parseFloat(document.getElementById('extra-delivery-charge').innerText);
+
+        document.getElementById('total-price').innerText = price1;
     }
 
     // console.log(normalMemoryAmount);
@@ -72,7 +86,9 @@ document.getElementById('delivery-button-1').addEventListener('click', function 
     const deliverText = delivery.innerText;
     const deliveryAmount = parseFloat(deliverText);
     delivery.innerText = 0;
-    // console.log(deliveryAmount);
+    let totalPrice = parseFloat(document.getElementById('total-price').innerText);
+    let subtractedPrice = totalPrice - 20;
+    document.getElementById('total-price').innerText = subtractedPrice;
 
 });
 // delivery 2
@@ -82,13 +98,8 @@ document.getElementById('delivery-button-2').addEventListener('click', function 
     if (deliverText < 20) {
         const deliveryAmount = parseFloat(deliverText) + 20;
         delivery.innerText = deliveryAmount;
-
-        //add
-        let price4 = 1299 + parseFloat(document.getElementById('extra-delivery-charge').innerText);
+        let price1 = 1299 + parseFloat(document.getElementById('extra-memory-cost').innerText) + parseFloat(document.getElementById('extra-storage-cost').innerText) + parseFloat(document.getElementById('extra-delivery-charge').innerText);
+        document.getElementById('total-price').innerText = price1;
     }
-
-    // console.log(deliveryAmount);
 });
-let total = document.getElementById('total-price').innerText
-let totalAmount = parseFloat(total);
-totalAmount = price1 + price2 + price3 + price4;
+
